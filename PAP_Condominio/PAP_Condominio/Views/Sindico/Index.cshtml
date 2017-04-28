@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PAP_Condominio.Models.Sindico>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Síndico Cadastrado</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar Síndico", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model._CondominioId.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeSobrenome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cpf)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apartamento)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item._CondominioId.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeSobrenome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cpf)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apartamento)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.SindicoId }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.SindicoId }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.SindicoId })
+        </td>
+    </tr>
+}
+
+</table>

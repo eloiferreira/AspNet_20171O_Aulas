@@ -1,0 +1,66 @@
+﻿@model PAP_Condominio.Models.Sindico
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Síndico</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model._CondominioId.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._CondominioId.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeSobrenome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeSobrenome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cpf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cpf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apartamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apartamento)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.SindicoId }) |
+    @Html.ActionLink("Síndico Cadastrado", "Index")
+</p>

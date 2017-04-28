@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MVC1.Models.Categoria>
+@{
+    ViewBag.Title = "Categorias";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        @*cabecalho*@
+        <th>
+            @*Mostra qual a expressao*@
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        @*helper "@html", é onde estao os componente que será usando*@
+        @*@Html.DisplayNameFor(model => model.Nome)*@
+
+        <th>
+
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+
+        <th>
+            @*onde ficara o editar, excluir*@
+
+        </th>
+    </tr>
+
+
+    @foreach (var cat in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => cat.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => cat.Descricao)
+            </td>
+            <td>
+                @*Para determinar os campos de acoes detalhes excluir...*@
+                @Html.ActionLink("Editar","Edit", new { id = cat.CategoriaID})
+                @Html.ActionLink("Detalhes", "Details", new { id = cat.CategoriaID })
+                @Html.ActionLink("Exibir Produtos","Index")
+           
+             </td>
+        </tr>
+    }
+</table>
+
+
+   
+
+    
+
+
+

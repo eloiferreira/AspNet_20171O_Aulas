@@ -1,0 +1,291 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1046{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green77\blue187;\red255\green0\blue0;\red192\green80\blue77;}
+{\*\generator Riched20 10.0.14393}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang10 criar bando de dados\par
+\cf1 create database \cf0 banco;\par
+\par
+excluir tabela\par
+\cf1 drop database \cf0 banco;\par
+\par
+\par
+\par
+PARAMETROS CONSTRAINTS(sao regras de definicoes\par
+\par
+not null= quer dizer que sera obrigatorio preencher o campo\par
+primary key= chave primaria, campo que nao se repete( nao vao existir duas tuplas(campos) iguais, ex: id, cpf..)\par
+auto_increment: vai auto incrementar codigos automatico crescente 1, 2 ,3 ,4...\par
+\par
+\par
+
+\pard\sl276\slmult1 definicao de caractere : inserir na hora de criar o bando\par
+\cf1 default character set \cf0 utf8\par
+\cf1 default collate \cf0 utf8_general_ci;\par
+\par
+alter pessoa;\par
+\par
+\par
+\cf2 OBS: \cf1 column \cf2\'e9 opcional\par
+\cf0 -Adicionar campo na tabela, para add com o tipo de dado:\par
+\cf1 alter table \cf0 pessoa\par
+\cf1 add column \cf0 profissao \cf1 varchar(10);\cf0\par
+\par
+-Excluir campo na tabela:\par
+\cf1 alter table \cf0 pessoa\par
+\cf1 drop column \cf0 profissao;\par
+\par
+-Adicionar campo na primeira posicao:\par
+\cf1 alter table \cf0 pessoa\par
+\cf1 add column \cf0 codigo \cf1 int first;\par
+\cf0\par
+-adicionar campo depois do campo que quiser usando o after(no caso depois do nome que esta na tabela)\par
+\cf1 alter table \cf0 pessoa\par
+\cf1 add column \cf0 codigo \cf1 int after \cf0 nome\cf1 ;\par
+\cf0\par
+\par
+\par
+- modificar as constraints e tipo primitivo, so nao pode renomear o campo\cf1\par
+alter table \cf0 pessoa\par
+\cf1 modify\cf0  profissao \cf1 varchar(30) not null default '';\cf0\par
+\par
+modificar o nome do campo column(tupla), tipo constraints e nome do campo\par
+\cf1 alter table \cf0 pessoa\par
+\cf1 change\cf0  profissao profi \cf1 varchar(30) not null default '';\par
+\cf0\par
+\cf1 - \cf0 Para renomear o nome da TABELA\cf1\par
+alter table \cf0 pessoa\par
+\cf1 rename to \cf0 pessoal;\par
+\par
+- adicionar primary key na tabela caso tenha esquecido\par
+\cf1 alter table \cf0 cursos\par
+\cf1 add primary key\cf0 (id);\par
+\par
+-Apagar a tabela inteira(apaga a estrutura da tabela):\par
+\cf1 drop tabl\cf0 e pessoa;\par
+------------------------------------------------------\par
+\par
+Usa- se \cf1\lang22538 if not exists(senao existir)\cf0   pra nao criar tabelas repetidas \par
+constrants : \par
+\cf1 unique \cf0 (ele nao deixar colocar dois -no caso nome dos cursos- com o mesmo nome.\lang10\par
+\cf1\lang22538 unsigned\cf0  que quer dizer sem sinal, no caso da tabela curso, em carga horaria ter\'e1 que - ecomomiza 1 byte\par
+\par
+EX:\par
+create \cf1 table if not exists\cf0  cursos(\par
+\par
+nome \cf1 varchar\cf0 (30) \cf1 unique\cf0 ,\par
+descricao \cf1 text\cf0 ,\par
+carga \cf1 int unsigned\cf0 ,\par
+totalAulas \cf1 int\cf0 ,\par
+ano \cf1 year default '2016'\cf0\par
+\par
+)\cf1 default charset\cf0  =utf8;\par
+\par
+\par
+\par
+-------------------------------------------------------------------------\par
+Opcao para inserir dados na tabela:\par
+\par
+\cf1 insert into \cf0 cursos \cf1 values\cf0\par
+('1','java','programacao em java','40', '10', default),\par
+('2','php','programacao em php','40', '10', default),\par
+('3','c#','programacao em c#','50', '10', default);\par
+\par
+Opcao para atualizar os registros, tuplas:\par
+\cf1\par
+update \cf0 cursos \par
+\cf1 set \cf0 nome= 'Python', descricao='programacao em python'\par
+\cf1 where \cf0 id ='1';\par
+\par
+Como excluir apenas um registro de um campo:\par
+\par
+\cf1 delete from \cf0 cursos\par
+\cf1 where \cf0 id='2';\par
+\par
+Excluiir todos os registro dentro da tabela cursos:\par
+\par
+\cf1 truncate table \cf0 cursos;\par
+\par
+Excluir dados como por EX exluir 3 dos 6 dados do ano que tem ano '2018'  para '2017'\par
+exclui os 3 primeiros do 6 dados\par
+\par
+\cf1 delete from \cf0 cursos\par
+\cf1 where\cf0  ano='2018\par
+\cf1 limit \cf0 3;\par
+\par
+\par
+Mostrar todas as tabelas:\par
+\par
+show table\par
+\par
+\par
+-------------------------\par
+mostra a table inteira por ordem do auto increment\par
+USAR \cf1 o select * from \cf0 cursos;\par
+\par
+mostra a tabela ordenada por nome\par
+\cf1 select * from \cf0 cursos\par
+\cf1 order by \cf0 nome;\par
+\par
+mostra a tabela ordenada por ordenada de cima para baixo(descendente- decrescente)\par
+\cf1 select * from \cf0 cursos\par
+\cf1 order by \cf0 nome \cf1 desc\cf0 ;\par
+\par
+buscar valores entre valores:\par
+\par
+\cf1 select \cf0 nome, ano \cf1 from \cf0 cursos\par
+\cf1 where\cf0  ano \cf1 between\cf0  '2010' \cf1 and \cf0 '2017'\par
+\cf1 order by\cf0  nome;\par
+\par
+\cf2 OBS: operadores, igual =, diferente =! ou <>, maior>, menor<, \par
+\cf0\par
+buscar dados especifico na tabela:\par
+\par
+\cf1 select \cf0 nome, ano \cf1 from \cf0 cursos\par
+\cf1 where \cf0 ano \cf1 in \cf0 (2010,2016)\par
+\cf1 order by \cf0 ano \cf1 desc \cf0 , nome \cf1 asc \cf0 ;\par
+\par
+buscar dados que termine ou comece com determinada letra ou nome (ex: procurar php  - like 'ph_'  ou 'p%'  OU O NOME BRUNA SILVA- pra achar pelo sobre nome silva usa-se \par
+'%_silva%'      o (_) quer dizer espaco antes ou depois \par
+\par
+\cf1 select \cf0 nome \cf1 from \cf0 cursos\par
+\cf1 where \cf0 nome \cf1 like \cf0 'p\cf1 %\cf0 ';\par
+\par
+para usar o distinct ser\'e1 quando vc tem varios dados repetitivos, de um cadastro q tenha nacionalidade, ajuda a saber quantos paises existem cadastrados, sem precisar repetir paises iguais\par
+\par
+\cf1 select distinct \cf0 nacionalidade \cf1 from \cf0 cursos;\par
+\par
+\cf3 Funcao de agregacao\par
+\cf0 EX consultar a quantidade de carga menores que 30 dentro da tabela cursos:\par
+\cf1 select count(*) from \cf0 cursos \cf1 where \cf0 carga \cf1 > \cf0 30;\par
+\par
+saber qual a carga maxima dos cursos:\par
+\cf1 select max(\cf0 carga\cf1 ) from \cf0 cursos;\par
+ ou \par
+saber qual o menor carga dos cursos de 2016\par
+\cf1 select \cf0 nome, \cf1 min\cf0 (carga) \cf1 from \cf0 cursos \cf1 where \cf0 = '2016';\par
+\par
+fazer a soma da columa usa-se o SUM , Ex exibira a soma das cargas da tabela curso\par
+\cf1 select sum(\cf0 carga\cf1 ) from \cf0 cursos;\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+create database banco1\par
+default character set utf8\par
+default collate utf8_general_ci;\par
+\par
+use banco1;\par
+\par
+create table pessoa(\par
+id int not null auto_increment,\par
+nome varchar(30) not null,\par
+idade date,\par
+sexo enum('M','F'),\par
+peso decimal(5,2),\par
+altura decimal(3,2),\par
+nascionalidade varchar(30) default'Brasil',\par
+primary key(id)\par
+)default charset = utf8;\par
+\par
+insert into pessoa values\par
+(default,'eloi','1989-09-08','M','74.0','1.70','irlanda'),\par
+(default,'andre','1992-02-19','M','100','1.70','Brasil');\par
+\par
+select * from pessoa;\par
+\par
+\par
+describe pessoa;\par
+desc pessoa;\par
+\par
+alter table pessoa\par
+add column profissao varchar(10);\par
+\par
+alter table pessoa\par
+drop column profissao;\par
+\par
+alter table pessoa\par
+add column profissao varchar(10) after nome;\par
+\par
+alter table pessoa\par
+modify column profissao varchar(30) not null default'';\par
+\par
+alter table pessoa\par
+change profissao profi varchar(30);\par
+\par
+\par
+\par
+\par
+desc pessoa;\par
+\par
+\par
+create table if not exists cursos(\par
+\par
+nome varchar(30) unique,\par
+descricao text,\par
+carga int unsigned,\par
+totalAulas int,\par
+ano year\par
+\par
+)default charset =utf8;\par
+\par
+alter table cursos\par
+modify nome varchar(30) unique;\par
+\par
+desc cursos;\par
+\par
+select * from cursos;\par
+\par
+alter table cursos\par
+add column id int first;\par
+\par
+alter table cursos\par
+add primary key(id);\par
+\par
+\par
+insert into cursos values\par
+('1','java','programacao em java','40', '10', default),\par
+('2','php','programacao em php','40', '10', default),\par
+('3','c#','programacao em c#','50', '10', default);\par
+\par
+update cursos \par
+set nome= 'Python', descricao='programacao em python'\par
+where id ='1';\par
+\par
+delete from cursos\par
+where id='2';\par
+\par
+desc cursos;\par
+\par
+select * from cursos;\par
+\par
+truncate cursos;\par
+\par
+\par
+}
+ 

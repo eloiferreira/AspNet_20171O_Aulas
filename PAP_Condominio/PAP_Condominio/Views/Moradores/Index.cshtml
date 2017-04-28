@@ -1,0 +1,103 @@
+﻿@model IEnumerable<PAP_Condominio.Models.Morador>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Moradores Cadastrados</h2>
+
+
+
+@*teste chat*@
+    <p>
+        Nome
+        <input type="text" id="nome" name="nome"/>
+    </p>
+
+    <p>Mensagem:<input type="text" id="mensagem" name="mensagem"/>
+    </p>
+    <input type="button" value="Enviar" id="enviar" name="enviar"/>
+
+    <br/>
+    <br/>
+    <ul id="conversa"></ul>
+
+
+@*<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.signalR-1.0.0-rc1.min.js"></script>
+<script src="~/signalr/hubs"></script>
+<script src="~/Scripts/Chat.js"></script>*@
+
+
+@*teste chat*@
+
+
+<p>
+    @Html.ActionLink("Inserir novo morador", "Create")
+</p>
+
+
+<table class="table">
+
+
+
+    <p>
+
+        @using (Html.BeginForm("Index", "Moradores", FormMethod.Get))
+        {
+            @Html.TextBox("filtroNome");
+            <input type="submit" value="Pesquisar" />
+        }
+    </p>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model._CondominioId.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeSobrenome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cpf)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apartamento)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item._CondominioId.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeSobrenome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apartamento)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new {id = item.MoradorId}) |
+                @Html.ActionLink("Detalhes", "Details", new {id = item.MoradorId}) |
+                @Html.ActionLink("Excluir", "Delete", new {id = item.MoradorId})
+            </td>
+        </tr>
+    }
+
+</table>
